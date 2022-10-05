@@ -3,12 +3,10 @@ import {useTelegram} from '../Hooks/useTelegram'
 
 import './App.css';
 
-
-
 const App = () => {
 
   const [name, setName] = useState();
-  const {user} = useTelegram();
+  const {tg, user} = useTelegram();
 
   useEffect(() => {
     tg.ready();
