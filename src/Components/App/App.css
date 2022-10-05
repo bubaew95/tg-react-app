@@ -1,3 +1,11 @@
+:root {
+  bg_color: var(--tg-theme-bg-color);
+  text_color: var(--tg-theme-text-color);
+}
+body: {
+  backgrount: bg_color
+}
+
 .App {
   text-align: center;
 }
