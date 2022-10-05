@@ -53,21 +53,23 @@ const App = () => {
 
   return (
     <div className="App">
-        <div className='row'>
-        {goods.map(item => {
-            return (
-              <div className='col col-md-6'>
-                <div class="card mb-4">
-                  <img src={item.img} height="120" class="card-img-top img-fluid" alt="..."/>
-                  <div class="card-body">
-                    <h5 class="card-title">{item.name}</h5>
-                    <p class="card-text">{item.price} руб.</p>
-                    <a href="#" class="btn btn-primary d-md-block">Купить</a>
+        <div className='container'>
+          <div className='card-group'>
+            {goods.map(item => {
+                return (
+                  <div className='col col-md-6'>
+                    <div class="card mb-4">
+                      <img src={item.img} class="card-img-top img-fluid" alt="..."/>
+                      <div class="card-body">
+                        <h6 class="card-title">{item.name}</h6>
+                        <p class="card-text">{item.price} руб.</p>
+                        <a href="#" class="btn btn-primary d-md-block">Купить</a>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            )
-          })}
+                )
+              })}
+          </div>
         </div>
     </div>
   );
