@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const Item = ({item, onAddToCart}) => {
@@ -6,7 +7,9 @@ const Item = ({item, onAddToCart}) => {
             <div className="card mb-4">
                 <img src={item.img} className="card-img-top img-fluid" alt="..."/>
                 <div className="card-body">
-                    <h6 className="card-title">{item.name}</h6>
+                    <Link to={`/product/${item.id}`}>
+                        <h6 className="card-title">{item.name}</h6>
+                    </Link>
                     <p className="card-text">{item.price}<small>₽</small></p>
                     <button
                         onClick={() => onAddToCart(item)}

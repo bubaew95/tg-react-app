@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'; 
-import { Link } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
+import Header from '../Header/Header';
 import {useTelegram} from '../Hooks/useTelegram'
 import Item from '../Item/Item';
+import MainPage from '../Pages/MainPage';
+import ProductPage from '../Pages/ProductPage';
 
 import './App.css';
 
@@ -84,26 +87,17 @@ const App = () => {
   return (
     <div className="App">
         <div className='container'>
-          <div className='row'>
-            <div className='col my-3'> 
-              <div className="d-flex flex-row justify-content-between align-items-center">
-                <Link to={() => console.log('e')}>
-                  <i class='fa fa-arrow-left'></i>
-                </Link>
-                <div className='name'>{user?.first_name}</div>
-              </div>
-            </div>
-          </div>
-          <div className='row mt-2'>
-            {
-              goods.map(item => {
-                return <Item 
-                  key={item.id}
-                  onAddToCart={onAddToCart} 
-                  item={item}/>
-              })
-            }
-          </div>
+          
+          <Header/>
+
+          <Routes>
+            <Route index element={
+              <MainPage onAddToCart={onAddToCart} goods={goods}/>
+            } />
+            <Route path="/product/:id" element={<ProductPage goods={goods}/>} />
+          </Routes>
+
+          
         </div>
     </div>
   );
