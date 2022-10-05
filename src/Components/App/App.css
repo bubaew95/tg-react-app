@@ -1,9 +1,9 @@
-:root {
-  bg_color: var(--tg-theme-bg-color);
+:root { 
   text_color: var(--tg-theme-text-color);
 }
+
 body: {
-  backgrount: bg_color
+  backgrount: var(--tg-theme-bg-color)
 }
 
 .App {
