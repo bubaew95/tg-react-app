@@ -8,7 +8,7 @@ import './App.css';
 const App = () => {
 
   const [name, setName] = useState();
-  const {tg, user} = useTelegram();
+  const {user} = useTelegram();
 
   useEffect(() => {
     tg.ready();
