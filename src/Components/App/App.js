@@ -53,16 +53,17 @@ const App = () => {
 
   return (
     <div className="App">
-        <div className='items'>
-          {goods.map(item => {
+        <div className='row'>
+        {goods.map(item => {
             return (
-              <div className='item'>
-                <div className='image'>
-                  <img src={item.img} />
-                </div>
-                <div className='body'>
-                  <p className='name'>{item.name}</p>
-                  <div className='price'>{item.price}₽</div>
+              <div className='col col-md-6'>
+                <div class="card mb-4">
+                  <img src={item.img} height="120" class="card-img-top img-fluid" alt="..."/>
+                  <div class="card-body">
+                    <h5 class="card-title">{item.name}</h5>
+                    <p class="card-text">{item.price} руб.</p>
+                    <a href="#" class="btn btn-primary d-md-block">Купить</a>
+                  </div>
                 </div>
               </div>
             )
