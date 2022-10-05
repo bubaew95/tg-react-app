@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react'; 
 import {useTelegram} from '../Hooks/useTelegram'
 import Item from '../Item/Item';
 
@@ -44,44 +43,61 @@ const goods = [
   }
 ]
 
+const getTotalPrice = (items = []) => {
+  return items.reduce((acc, item) => {
+      return acc += parseInt(item.price)
+  }, 0)
+}
+
 const App = () => {
 
-  const [cart, setCart] = useState({
-    qty: 0,
-    price: 0
-  });
+  const [addedItems, setAddedItems] = useState([]);
   const {tg, user} = useTelegram();
 
   useEffect(() => {
     tg.ready();
   }, [tg])
 
-  const onAddToCart = (item) => { 
+  const onAddToCart = (product) => { 
+    const alreadyAdded = addedItems.find(item => item.id === product.id);
+    let newItems = [];
 
-    setCart({
-      ...cart,
-      qty: cart.qty + 1,
-      price: cart.price + item.price
-    })
-
-    if(cart.qty > 0) {
-      tg.MainButton.show();
-      tg.MainButton.setParams({
-        text: `Купить ${cart.price} (${cart.qty})`
-      });
+    if(alreadyAdded) {
+        newItems = addedItems.filter(item => item.id !== product.id);
     } else {
-      tg.MainButton.hide();
+        newItems = [...addedItems, product];
     }
-  
+
+    setAddedItems(newItems)
+
+    if(newItems.length === 0) {
+        tg.MainButton.hide();
+    } else {
+        tg.MainButton.show();  
+        tg.MainButton.setParams({
+            text: `Купить ${getTotalPrice(newItems)}` 
+        })
+    }
   }
 
   return (
-    <div className="App mt-2">
+    <div className="App">
         <div className='container'>
           <div className='row'>
+            <div className='col my-3'> 
+              <div className="d-flex flex-row justify-between">
+                <div className='back'> Back </div>
+                <div className='name'>{user?.first_name}</div>
+              </div>
+            </div>
+          </div>
+          <div className='row mt-2'>
             {
               goods.map(item => {
-                return <Item onAddToCart={onAddToCart} item={item}/>
+                return <Item 
+                  key={item.id}
+                  onAddToCart={onAddToCart} 
+                  item={item}/>
               })
             }
           </div>

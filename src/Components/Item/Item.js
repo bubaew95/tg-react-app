@@ -2,7 +2,7 @@
 
 const Item = ({item, onAddToCart}) => {
     return (
-        <div className='col col-md-6 col-6' key={item.id}>
+        <div className='col col-md-6 col-6'>
             <div className="card mb-4">
                 <img src={item.img} className="card-img-top img-fluid" alt="..."/>
                 <div className="card-body">
