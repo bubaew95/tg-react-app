@@ -1,11 +1,24 @@
+import { useEffect, useState } from 'react';
+import useTelegram from '../Hooks/useTelegram'
+
 import './App.css';
 
-// const tg = window.Telegram.WebApp;
 
-function App() {
+
+const App = () => {
+
+  const [name, setName] = useState();
+  const {user} = useTelegram();
+
+  useEffect(() => {
+    setName(
+      JSON.stringify(user)
+    )
+  }, [])
+
   return (
     <div className="App">
-        test app
+        {name}
     </div>
   );
 }
