@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'; 
+import { Link } from 'react-router-dom';
 import {useTelegram} from '../Hooks/useTelegram'
 import Item from '../Item/Item';
 
@@ -85,8 +86,10 @@ const App = () => {
         <div className='container'>
           <div className='row'>
             <div className='col my-3'> 
-              <div className="d-flex flex-row justify-between">
-                <div className='back'> Back </div>
+              <div className="d-flex flex-row justify-content-between align-items-center">
+                <Link to={() => console.log('e')}>
+                  <i class='fa fa-arrow-left'></i>
+                </Link>
                 <div className='name'>{user?.first_name}</div>
               </div>
             </div>
