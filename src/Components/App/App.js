@@ -54,7 +54,7 @@ const App = () => {
   return (
     <div className="App">
         <div className='container'>
-          <div className='card-group'>
+          <div className='row'>
             {goods.map(item => {
                 return (
                   <div className='col col-md-6'>
