@@ -84,7 +84,7 @@ const App = () => {
   }
 
   const onSendData = useCallback(() => {
-      tg.sendData(JSON.stringify({id: 1, text: 'text'}));
+      tg.sendData(JSON.stringify(addedItems));
   }, [])
 
   useEffect(() => {
