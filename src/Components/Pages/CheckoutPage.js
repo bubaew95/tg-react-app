@@ -1,10 +1,10 @@
 
 
-const CheckoutPage = () => {
+const CheckoutPage = ({cart}) => {
 
     return (
         <div>
-            Checkout
+            {JSON.stringify(cart)}
         </div>
     )
 

@@ -97,6 +97,9 @@ const App = () => {
             <Route path="/product/:id" element={
               <ProductPage goods={goods} onAddToCart={onAddToCart}/>
             } />
+            <Route path="/checkout" element={
+              <CheckoutPage cart={addedItems}/>
+            } />
           </Routes>
 
           
