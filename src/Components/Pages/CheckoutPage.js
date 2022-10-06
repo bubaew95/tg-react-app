@@ -26,3 +26,5 @@ const CheckoutPage = ({cart}) => {
     )
 
 }
+
+export default CheckoutPage;

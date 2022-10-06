@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import {useTelegram} from '../Hooks/useTelegram'
+import CheckoutPage from '../Pages/CheckoutPage';
 import MainPage from '../Pages/MainPage';
 import ProductPage from '../Pages/ProductPage';
 
