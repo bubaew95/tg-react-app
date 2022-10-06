@@ -1,10 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { useCallback, useEffect } from "react"; 
 import { useTelegram } from "../Hooks/useTelegram";
 
 
 const CheckoutPage = ({cart}) => {
 
-    const navigate = useNavigate();
     const {tg} = useTelegram();
 
 
