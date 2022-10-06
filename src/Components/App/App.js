@@ -84,6 +84,17 @@ const App = () => {
     }
   }
 
+  const onSendData = useCallback(() => {
+      tg.sendData(JSON.stringify({id: 1, text: 'text'}));
+  }, [])
+
+  useEffect(() => {
+      tg.onEvent('mainButtonClicked', onSendData)
+      return () => {
+          tg.offEvent('mainButtonClicked', onSendData)
+      }
+  }, [onSendData])
+
   return (
     <div className="App">
         <div className='container'>
