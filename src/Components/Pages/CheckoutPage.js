@@ -27,7 +27,7 @@ const CheckoutPage = ({cart}) => {
 
     const onSendData = useCallback(() => {
         tg.sendData(JSON.stringify({cart, formData}));
-    }, [cart])
+    }, [cart, formData])
     
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData)
