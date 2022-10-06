@@ -14,12 +14,12 @@ const MainPage = ({goods, onAddToCart}) => {
         // tg.sendData(JSON.stringify(addedItems));
     }, [])
     
-      useEffect(() => {
-          tg.onEvent('mainButtonClicked', onSendData)
-          return () => {
-              tg.offEvent('mainButtonClicked', onSendData)
-          }
-      }, [onSendData])
+    useEffect(() => {
+        tg.onEvent('mainButtonClicked', onSendData)
+        return () => {
+            tg.offEvent('mainButtonClicked', onSendData)
+        }
+    }, [onSendData])
 
     return (
         <div className='row mt-2'>
