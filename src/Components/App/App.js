@@ -79,7 +79,7 @@ const App = () => {
     } else {
         tg.MainButton.show(); 
         tg.MainButton.setParams({
-            text: `В корзине (${newItems.length}) ${getTotalPrice(newItems)}` 
+            text: `В корзине (${newItems.length}) ${getTotalPrice(newItems)}₽` 
         })
     }
   }
