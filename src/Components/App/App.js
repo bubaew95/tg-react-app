@@ -88,13 +88,15 @@ const App = () => {
     <div className="App">
         <div className='container'>
           
-          <Header/>
+          <Header user={user}/>
 
           <Routes>
-            <Route index element={
+            <Route index path='/' element={
               <MainPage onAddToCart={onAddToCart} goods={goods}/>
             } />
-            <Route path="/product/:id" element={<ProductPage goods={goods}/>} />
+            <Route path="/product/:id" element={
+              <ProductPage goods={goods} onAddToCart={onAddToCart}/>
+            } />
           </Routes>
 
           
