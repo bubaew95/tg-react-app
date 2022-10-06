@@ -78,9 +78,9 @@ const App = () => {
     if(newItems.length === 0) {
         tg.MainButton.hide();
     } else {
-        tg.MainButton.show();  
+        tg.MainButton.show(); 
         tg.MainButton.setParams({
-            text: `Купить ${getTotalPrice(newItems)}` 
+            text: `В корзине (${newItems.length}) ${getTotalPrice(newItems)}` 
         })
     }
   }
