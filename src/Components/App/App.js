@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'; 
+import { useEffect, useState } from 'react'; 
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import {useTelegram} from '../Hooks/useTelegram'
@@ -55,7 +55,6 @@ const getTotalPrice = (items = []) => {
 
 const App = () => {
 
-  const navigate = useNavigate();
   const [addedItems, setAddedItems] = useState([]);
   const {tg, user} = useTelegram();
 
@@ -103,7 +102,6 @@ const App = () => {
             } />
           </Routes>
 
-          
         </div>
     </div>
   );
