@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'; 
-import { Link, Route, Routes } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react'; 
+import { Route, Routes } from 'react-router-dom';
 import Header from '../Header/Header';
 import {useTelegram} from '../Hooks/useTelegram'
-import Item from '../Item/Item';
 import MainPage from '../Pages/MainPage';
 import ProductPage from '../Pages/ProductPage';
 
