@@ -62,6 +62,17 @@ const App = () => {
     tg.ready();
   }, [tg])
 
+  useEffect(() => {
+    if(addedItems.length === 0) {
+      tg.MainButton.hide();
+    } else {
+        tg.MainButton.show(); 
+        tg.MainButton.setParams({
+            text: `В корзине (${addedItems.length}) ${getTotalPrice(addedItems)}₽` 
+        })
+    }
+  }, [addedItems])
+
   const onAddToCart = (product) => { 
     const alreadyAdded = addedItems.find(item => item.id === product.id);
     let newItems = [];
@@ -73,15 +84,6 @@ const App = () => {
     }
 
     setAddedItems(newItems)
-
-    if(newItems.length === 0) {
-        tg.MainButton.hide();
-    } else {
-        tg.MainButton.show(); 
-        tg.MainButton.setParams({
-            text: `В корзине (${newItems.length}) ${getTotalPrice(newItems)}₽` 
-        })
-    }
   }
 
   return (

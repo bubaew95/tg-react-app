@@ -12,7 +12,7 @@ const MainPage = ({goods, onAddToCart}) => {
     const onSendData = useCallback(() => {
         navigate('/checkout');
         // tg.sendData(JSON.stringify(addedItems));
-    }, [onAddToCart])
+    }, [])
     
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData)
