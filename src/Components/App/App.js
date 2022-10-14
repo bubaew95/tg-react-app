@@ -6,6 +6,8 @@ import CheckoutPage from '../Pages/CheckoutPage';
 import MainPage from '../Pages/MainPage';
 import ProductPage from '../Pages/ProductPage';
  
+import { useSelector } from 'react-redux'; 
+
 import './App.css';
 
 const getTotalPrice = (items = []) => {
@@ -15,23 +17,24 @@ const getTotalPrice = (items = []) => {
 }
 
 const App = () => {
-  const {tg, user} = useTelegram(); 
-  const [addedItems, setAddedItems] = useState([]); 
+  const {tg, user} = useTelegram();
+
+  const {items, totalSum, qty} = useSelector((state) => state.cart);
 
   useEffect(() => {
     tg.ready();
   }, [tg])
 
   useEffect(() => {
-    if(addedItems.length === 0) {
+    if(items.length === 0) {
       tg.MainButton.hide();
     } else {
         tg.MainButton.show(); 
         tg.MainButton.setParams({
-            text: `В корзине (${addedItems.length}) ${getTotalPrice(addedItems)}₽` 
+            text: `В корзине (${qty}) ${totalSum}₽` 
         })
     }
-  }, [addedItems])
+  }, [items])
 
   return ( 
     <div className="App">
