@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'; 
 import { cartRoute } from "../../Redux/Reducers/AddToCartReducer";
 import { productByIdRoute } from "../../Redux/Reducers/ProductByIdReducer";
+import { Spinner } from "../Spinner";
 
 const ProductPage = () => {
     const params    = useParams()
@@ -18,6 +19,9 @@ const ProductPage = () => {
 
     useEffect(() => {
         dispatch(productByIdRoute(params.id));
+        return () => {
+
+        }
     }, [])
 
     if(error) {
@@ -25,7 +29,7 @@ const ProductPage = () => {
     }
 
     if(isLoading) {
-        return <div>Loading...</div>
+        return <Spinner />
     }
 
     return (

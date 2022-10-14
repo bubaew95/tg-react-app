@@ -6,6 +6,8 @@ import Item from "../Item/Item"
 import { useSelector, useDispatch } from 'react-redux'; 
 import { productRoute } from "../../Redux/Reducers/ProductsReducer";
 
+import { Spinner } from "../Spinner";
+
 const MainPage = () => {
     const { 
         error, 
@@ -38,11 +40,11 @@ const MainPage = () => {
     }
 
     if(isLoading) {
-        return <div>Loading...</div>
+        return <Spinner />
     }
 
     return (
-        <div className='row mt-2'>
+        <div className='row mt-2'> 
             {
               products.map(item => {
                 return <Item
