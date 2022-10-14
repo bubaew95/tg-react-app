@@ -1,4 +1,4 @@
-import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import { collection, getDocs, getDoc, doc } from "@firebase/firestore";
 import { firestore } from "./FirebaseConfig";
 
 const PRODUCTS_TABLE = 'products';
