@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
 
+import { useDispatch } from 'react-redux'; 
+import { cartRoute } from "../../Redux/Reducers/AddToCartReducer";
 
-const Item = ({item, onAddToCart}) => {
+
+const Item = ({item}) => {
+    const dispatch = useDispatch(); 
+
+    const addToCart = (item) => dispatch(cartRoute(item));
+
     return (
         <div className='col col-md-6 col-6'>
             <div className="card mb-4">
@@ -12,7 +19,7 @@ const Item = ({item, onAddToCart}) => {
                     </Link>
                     <p className="card-text">{item.price}<small>₽</small></p>
                     <button
-                        onClick={() => onAddToCart(item)}
+                        onClick={() => addToCart(item)}
                         className="btn btn-warning" 
                         style={{width: "100%"}}>
                         Купить
