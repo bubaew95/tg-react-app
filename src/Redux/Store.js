@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 
 // import counter from './counter'
 import products from './Reducers/ProductsReducer'
