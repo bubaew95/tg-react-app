@@ -7,11 +7,12 @@ import { createRoutine } from 'redux-saga-routines'
 const initialState = {
     isLoading: true,
     error: null,
-    product: []
+    product: null
 }
 
 // routine теперь заменяет action creator
 export const productByIdRoute = createRoutine('PRODUCT_BY_ID')
+export const productByIdClearRoute = createRoutine('PRODUCT_BY_ID_CLEAR')
 
 // reducer откликается на созданные роутинами actions
 const productById = createReducer(initialState, {
@@ -23,9 +24,9 @@ const productById = createReducer(initialState, {
     const { error } = action.payload
     return { ...state, error }
   },
-  [productByIdRoute.FULFILL]: (state, action) => {
-    const { isLoading } = action.payload
-    return { ...state, isLoading }
+
+  [productByIdClearRoute.FULFILL]: (state, action) => { 
+    return { ...state, isLoading: false, error: null, product: null }
   }
 })
 

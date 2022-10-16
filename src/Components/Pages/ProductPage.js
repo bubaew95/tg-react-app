@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from 'react-redux'; 
 import { cartRoute } from "../../Redux/Reducers/AddToCartReducer";
-import { productByIdRoute } from "../../Redux/Reducers/ProductByIdReducer";
+import { productByIdRoute, productByIdClearRoute } from "../../Redux/Reducers/ProductByIdReducer";
 import { Spinner } from "../Spinner";
 
 const ProductPage = () => {
@@ -19,9 +19,10 @@ const ProductPage = () => {
 
     useEffect(() => {
         dispatch(productByIdRoute(params.id));
-        return () => {
 
-        }
+        // return () => {
+        //     dispatch(productByIdClearRoute());
+        // }
     }, [])
 
     if(error) {

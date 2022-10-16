@@ -2,12 +2,15 @@ import { Link } from "react-router-dom";
 
 import { useDispatch } from 'react-redux'; 
 import { cartRoute } from "../../Redux/Reducers/AddToCartReducer";
+import { useTelegram } from "../Hooks/useTelegram";
 
 
 const Item = ({item}) => {
     const dispatch = useDispatch(); 
 
-    const addToCart = (item) => dispatch(cartRoute(item));
+    const {user} = useTelegram();
+
+    const addToCart = (item) => dispatch(cartRoute({item, userId: user?.id}));
 
     return (
         <div className='col col-md-6 col-6'>

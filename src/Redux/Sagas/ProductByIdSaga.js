@@ -2,7 +2,7 @@
 
 import { call, put, takeLatest } from 'redux-saga/effects'
 import { FirebaseApi } from '../../Firebase/FirebaseApi';
-import { productByIdRoute } from '../Reducers/ProductByIdReducer'
+import { productByIdRoute, productByIdClearRoute } from '../Reducers/ProductByIdReducer'
 
 // worker
 function* oneProductWorker(action) { 
@@ -15,9 +15,17 @@ function* oneProductWorker(action) {
     yield put(failure({error: error.message, isLoading: false}))
   }
 }
-
-// watcher
-// при срабатывании триггера login отработает и loginWorker
+ 
 export function* productByIdWatcher() {
   yield takeLatest(productByIdRoute.TRIGGER, oneProductWorker)
+}
+
+function* productByIdClearWorker(action) { 
+  console.log(action)
+  const { fulfill } = productByIdClearRoute;
+  yield put(fulfill())
+}
+
+export function* productByIdClearWatcher() {
+  yield takeLatest(productByIdClearRoute.TRIGGER, productByIdClearWorker)
 }
