@@ -19,9 +19,9 @@ const getTotalPrice = (items = []) => {
 }
 
 const App = () => {
-  const [searchParams]    = useSearchParams()
-  const {tg, user}        = useTelegram();
-  const {setValue}        = useLocalStorage('owner_id');
+  const [searchParams]          = useSearchParams()
+  const {tg, user}              = useTelegram();
+  const {storedValue, setValue} = useLocalStorage('owner_id');
 
   const dispatch = useDispatch();
   const {items, totalSum, quantity} = useSelector((state) => state.cart);
@@ -33,7 +33,7 @@ const App = () => {
       setValue(searchParams.get('id'));
     }
 
-    dispatch(cartRoute());
+    dispatch(cartRoute(storedValue));
   }, [tg])
 
   useEffect(() => {

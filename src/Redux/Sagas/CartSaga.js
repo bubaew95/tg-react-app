@@ -13,11 +13,8 @@ function* addToCartWorker(action) {
     yield put(request({items: item})) 
     try { 
       const cartAdd = yield call(FirebaseApi.addToCart, action.payload)
-      // const cart = yield call(FirebaseApi.cart, action.payload)
-      console.log(cartAdd)
     } catch (error) {
       console.log(error)
-      // yield put(failure({error: error.message, isLoading: false}))
     }
 }
 
@@ -31,8 +28,6 @@ export function* addToCartWatcher() {
 // worker
 function* cartWorker(action) { 
     const { request, success, failure, fulfill } = cartRoute;
-    // const {item, userId} = action.payload
-
     try { 
       const cart = yield call(FirebaseApi.cart, action.payload)
       yield put(success(cart)) 

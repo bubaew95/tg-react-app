@@ -28,17 +28,18 @@ export const FirebaseApi = {
   },
 
   addToCart: async(params = {}) => { 
-    const {item, userId = 1} = params
+    console.log(params)
+    const {item, quantity, totalSum, userId = 1} = params
     const id = doc(collection(firestore, CART_TABLE)).id;
 
     const batch     = writeBatch(firestore);
     const items     = doc(firestore, CART_TABLE, `${userId}`, 'items', id);
-    const totalSum  = doc(firestore, CART_TABLE, `${userId}`);
+    const total     = doc(firestore, CART_TABLE, `${userId}`);
 
     batch.set(items, item);
-    batch.set(totalSum, {
-      totalSum: 1000,
-      quantity: 2
+    batch.set(total, {
+      totalSum: totalSum,
+      quantity: quantity
     });
 
     return await batch.commit();
@@ -52,7 +53,12 @@ export const FirebaseApi = {
         lists.push(item.data())
       })
 
-      return {...cart.data(), items: lists}
+      const cartData = cart.data();
+      const nCartData = {
+        quantity: !isNaN(cartData.quantity) ? cartData.quantity : 0,
+        totalSum: !isNaN(cartData.totalSum) ? cartData.totalSum : 0, 
+      };  
+      return {...nCartData, items: lists}
   },
 
   addBatch: async(params = {}) => { 

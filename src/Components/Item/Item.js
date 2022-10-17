@@ -1,15 +1,7 @@
 import { Link } from "react-router-dom";
+ 
 
-import { useDispatch } from 'react-redux'; 
-import { cartAddRoute } from "../../Redux/Reducers/CartReducer"; 
-import { useLocalStorage } from "../Hooks/useStorage";
-
-const Item = ({item}) => {
-    const dispatch      = useDispatch(); 
-    const {storedValue} = useLocalStorage('owner_id');
-
-    const addToCart = (item) => dispatch(cartAddRoute({item, userId: storedValue}));
-
+const Item = ({item, addToCart}) => {
     return (
         <div className='col col-md-6 col-6'>
             <div className="card mb-4">
