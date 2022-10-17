@@ -5,7 +5,7 @@ import { configureStore } from '@reduxjs/toolkit'
 // import counter from './counter'
 import products from './Reducers/ProductsReducer'
 import productById from './Reducers/ProductByIdReducer'
-import cart from './Reducers/AddToCartReducer'
+import cart from './Reducers/CartReducer'
 import rootSaga from './Sagas/rootSaga'
 
 // добавить sagaMiddleware

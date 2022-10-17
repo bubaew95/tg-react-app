@@ -32,7 +32,7 @@ export const FirebaseApi = {
     const id = doc(collection(firestore, CART_TABLE)).id;
 
     const batch     = writeBatch(firestore);
-    const items     = doc(firestore, CART_TABLE, `${userId}`, id, 'item');
+    const items     = doc(firestore, CART_TABLE, `${userId}`, 'items', id);
     const totalSum  = doc(firestore, CART_TABLE, `${userId}`);
 
     batch.set(items, item);
@@ -41,20 +41,18 @@ export const FirebaseApi = {
       quantity: 2
     });
 
-    // const querySnapshot = await getDoc(doc(firestore, `cart`, '1'));
- 
-    // console.log(querySnapshot.collections); 
-
     return await batch.commit();
   },
 
   cart: async (params = {}) => {
-    const querySnapshot = await getDocs(collection(firestore, `cart/1/7JbmmSyVSwF9Mk8NoXlL`));
-    const list = [];
-    querySnapshot.forEach(item => { 
-      list.push(item.data())
-    })
-    console.log(list); 
+    const lists = [];
+      const cart = await getDoc(doc(firestore, CART_TABLE, '5005051'));
+      const cartItems = await getDocs(collection(firestore, `cart/5005051/items`));
+      cartItems.forEach(item => { 
+        lists.push(item.data())
+      })
+
+      return {...cart.data(), items: lists}
   },
 
   addBatch: async(params = {}) => { 

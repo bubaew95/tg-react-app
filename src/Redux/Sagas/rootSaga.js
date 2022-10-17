@@ -1,6 +1,6 @@
 
 import { all } from 'redux-saga/effects'
-import { cartWatcher } from './AddToCartSaga'
+import { addToCartWatcher, cartWatcher } from './CartSaga'
 import { productByIdWatcher, productByIdClearWatcher } from './ProductByIdSaga'
 import { productsWatcher } from './ProductSaga'
 
@@ -9,6 +9,7 @@ export default function* rootSaga() {
     productsWatcher(),
     productByIdWatcher(),
     productByIdClearWatcher(),
+    addToCartWatcher(),
     cartWatcher()
   ])
 }

@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react'; 
-import { Route, Routes, useParams, useSearchParams } from 'react-router-dom';
-import Header from '../Header/Header';
+import { useEffect } from 'react'; 
+import { Route, Routes,useSearchParams } from 'react-router-dom';
 import {useTelegram} from '../Hooks/useTelegram'
+import Header from '../Header/Header';
 import CheckoutPage from '../Pages/CheckoutPage';
 import MainPage from '../Pages/MainPage';
 import ProductPage from '../Pages/ProductPage';
  
-import { useSelector } from 'react-redux'; 
+import { useDispatch, useSelector } from 'react-redux'; 
 
 import './App.css';
 import { useLocalStorage } from '../Hooks/useStorage';
+import { cartRoute } from '../../Redux/Reducers/CartReducer';
 
 const getTotalPrice = (items = []) => {
   return items.reduce((acc, item) => {
@@ -22,13 +23,17 @@ const App = () => {
   const {tg, user}        = useTelegram();
   const {setValue}        = useLocalStorage('owner_id');
 
+  const dispatch = useDispatch();
   const {items, totalSum, qty} = useSelector((state) => state.cart);
 
   useEffect(() => {
     tg.ready();
+
     if(searchParams.has('id')) { 
       setValue(searchParams.get('id'));
     }
+
+    dispatch(cartRoute());
   }, [tg])
 
   useEffect(() => {

@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
 
 import { useDispatch } from 'react-redux'; 
-import { cartRoute } from "../../Redux/Reducers/AddToCartReducer";
-import { useTelegram } from "../Hooks/useTelegram";
+import { cartAddRoute } from "../../Redux/Reducers/CartReducer"; 
 import { useLocalStorage } from "../Hooks/useStorage";
 
 const Item = ({item}) => {
-    const dispatch = useDispatch(); 
+    const dispatch      = useDispatch(); 
     const {storedValue} = useLocalStorage('owner_id');
 
-    const addToCart = (item) => dispatch(cartRoute({item, userId: storedValue}));
+    const addToCart = (item) => dispatch(cartAddRoute({item, userId: storedValue}));
 
     return (
         <div className='col col-md-6 col-6'>
