@@ -24,7 +24,7 @@ const App = () => {
   const {setValue}        = useLocalStorage('owner_id');
 
   const dispatch = useDispatch();
-  const {items, totalSum, qty} = useSelector((state) => state.cart);
+  const {items, totalSum, quantity} = useSelector((state) => state.cart);
 
   useEffect(() => {
     tg.ready();
@@ -42,7 +42,7 @@ const App = () => {
     } else {
         tg.MainButton.show(); 
         tg.MainButton.setParams({
-            text: `В корзине (${qty}) ${totalSum}₽` 
+            text: `В корзине (${quantity}) ${totalSum}₽` 
         })
     }
   }, [items])
