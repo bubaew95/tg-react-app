@@ -1,10 +1,12 @@
-import { useSelector } from "react-redux";
+import { useCallback, useEffect } from "react"; 
 import { Link } from "react-router-dom";
+import { useTelegram } from "../Hooks/useTelegram";
+import { Spinner } from "../Spinner";
 
 
 const CartPage = ({items, isLoading}) => {
 
-    const {tg}          = useTelegram(); 
+    const {tg} = useTelegram(); 
 
     const onSendData = useCallback(() => {
         navigate('/checkout');
@@ -30,9 +32,7 @@ const CartPage = ({items, isLoading}) => {
     
 
     if(isLoading === true) {
-        return (
-            <div>Loading...</div>
-        )
+        return <Spinner />
     }
 
     return (
