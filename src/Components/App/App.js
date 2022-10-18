@@ -1,5 +1,5 @@
 import { useEffect } from 'react'; 
-import { Route, Routes,useLocation,useSearchParams } from 'react-router-dom';
+import { Route, Routes ,useSearchParams } from 'react-router-dom';
 import {useTelegram} from '../Hooks/useTelegram'
 import Header from '../Header/Header';
 import CheckoutPage from '../Pages/CheckoutPage';
@@ -17,7 +17,6 @@ const App = () => {
   const [searchParams]          = useSearchParams()
   const {tg, user}              = useTelegram();
   const {storedValue, setValue} = useLocalStorage('owner_id');
-  const location                = useLocation();
 
   const dispatch = useDispatch();
   const {items, totalSum, quantity, isLoading} = useSelector((state) => state.cart);
@@ -41,7 +40,7 @@ const App = () => {
             text: `В корзине (${quantity}) ${totalSum}₽` 
         })
     }
-  }, [items, location.key])
+  }, [items])
 
   return ( 
     <div className="App">

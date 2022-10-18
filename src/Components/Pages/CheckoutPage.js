@@ -23,6 +23,10 @@ const CheckoutPage = ({cart}) => {
         } else {
             tg.MainButton.hide();
         }
+        
+        return () => {
+            tg.MainButton.show();
+        }
     }, [formData])
 
     const onSendData = useCallback(() => {
