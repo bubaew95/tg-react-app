@@ -24,7 +24,7 @@ const MainPage = () => {
     }, [])
 
     const onSendData = useCallback(() => {
-        navigate('/checkout');
+        navigate('/cart');
         // tg.sendData(JSON.stringify(addedItems));
     }, [])
     
