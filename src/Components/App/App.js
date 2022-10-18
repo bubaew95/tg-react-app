@@ -11,12 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import { useLocalStorage } from '../Hooks/useStorage';
 import { cartRoute } from '../../Redux/Reducers/CartReducer';
-
-const getTotalPrice = (items = []) => {
-  return items.reduce((acc, item) => {
-      return acc += parseInt(item.price)
-  }, 0)
-}
+import CartPage from '../Pages/CartPage';
 
 const App = () => {
   const [searchParams]          = useSearchParams()
@@ -24,7 +19,7 @@ const App = () => {
   const {storedValue, setValue} = useLocalStorage('owner_id');
 
   const dispatch = useDispatch();
-  const {items, totalSum, quantity} = useSelector((state) => state.cart);
+  const {items, totalSum, quantity, isLoading} = useSelector((state) => state.cart);
 
   useEffect(() => {
     tg.ready();
@@ -57,6 +52,9 @@ const App = () => {
               } />
               <Route path="/product/:id" element={
                 <ProductPage />
+              } />
+              <Route path="/cart" element={
+                <CartPage items={items} isLoading={isLoading}/>
               } />
               <Route path="/checkout" element={
                 <CheckoutPage/>

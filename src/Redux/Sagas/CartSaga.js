@@ -28,13 +28,13 @@ export function* addToCartWatcher() {
 // worker
 function* cartWorker(action) { 
     const { request, success, failure, fulfill } = cartRoute;
-    try { 
+    try {
       const cart = yield call(FirebaseApi.cart, action.payload)
       yield put(success(cart)) 
     } catch (error) {
       yield put(failure({error: error.message}))
     } finally {
-      // yield put(fulfill({}))
+      yield put(fulfill())
     }
 }
 

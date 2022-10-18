@@ -7,7 +7,9 @@ import { createRoutine } from 'redux-saga-routines'
 const initialState = {
     items: [],
     totalSum: 0,
-    quantity: 0
+    quantity: 0,
+    isLoading: true,
+    error: ""
 }
 
 // routine теперь заменяет action creator
@@ -27,13 +29,17 @@ const cart = createReducer(initialState, {
     }
   },
 
+  [cartRoute.TRIGGER]: (state, action) => { 
+    return { ...state, isLoading: true }
+  },
   [cartRoute.SUCCESS]: (state, action) => {
     const { items, totalSum, quantity } = action.payload 
     return { 
       ...state, 
       items,
       totalSum, 
-      quantity
+      quantity,
+      isLoading: false
     }
   }
 })

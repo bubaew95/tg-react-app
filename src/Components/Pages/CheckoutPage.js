@@ -20,8 +20,12 @@ const CheckoutPage = ({cart}) => {
         console.log({name, phone, email})
         if(name.length !== 0 && (phone.length > 7 || email.length > 3)) {
             tg.MainButton.show();
-        }else {
+        } else {
             tg.MainButton.hide();
+        }
+        
+        return () => {
+            tg.MainButton.show();
         }
     }, [formData])
 
