@@ -1,18 +1,8 @@
-import { useTelegram } from "./useTelegram";
-
-
-export const useTelegramButton = ({items, text}) => {
-
-    const {tg} = useTelegram();
-
-    useEffect(() => {
-        if(items.length === 0) {
-            tg.MainButton.hide();
-        } else {
-            tg.MainButton.show(); 
-            tg.MainButton.setParams({ text })
-        }
-    }, [items])
-
-    return null;
+export const telegramButton = (tg, text, stateButton) => {
+    if(stateButton) {
+        tg.MainButton.hide();
+    } else {
+        tg.MainButton.show(); 
+        tg.MainButton.setParams({ text })
+    }
 }

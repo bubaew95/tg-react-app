@@ -12,7 +12,7 @@ import './App.css';
 import { useLocalStorage } from '../Hooks/useStorage';
 import { cartRoute } from '../../Redux/Reducers/CartReducer';
 import CartPage from '../Pages/CartPage';
-import { useTelegramButton } from '../Hooks/useTelegramButton';
+import { telegramButton } from '../Hooks/useTelegramButton';
 
 const App = () => {
   const [searchParams]          = useSearchParams()
@@ -21,30 +21,26 @@ const App = () => {
 
   const dispatch = useDispatch();
   const {items, totalSum, quantity, isLoading} = useSelector((state) => state.cart);
-  const telegramButton = useTelegramButton(items, 'text')
 
   useEffect(() => {
     tg.ready();
-
     if(searchParams.has('id')) { 
       setValue(searchParams.get('id'));
     }
-
     dispatch(cartRoute(storedValue));
   }, [tg])
 
-  telegramButton();
-  
-  // useEffect(() => {
-  //   if(items.length === 0) {
-  //     tg.MainButton.hide();
-  //   } else {
-  //       tg.MainButton.show(); 
-  //       tg.MainButton.setParams({
-  //           text: `В корзине (${quantity}) ${totalSum}₽` 
-  //       })
-  //   }
-  // }, [items])
+  useEffect(() => {
+    telegramButton(tg, `В корзине (${quantity}) ${totalSum}₽`, items.length === 0);
+    // if(items.length === 0) {
+    //   tg.MainButton.hide();
+    // } else {
+    //     tg.MainButton.show(); 
+    //     tg.MainButton.setParams({
+    //         text: `В корзине (${quantity}) ${totalSum}₽` 
+    //     })
+    // }
+  }, [items])
 
   return ( 
     <div className="App">
