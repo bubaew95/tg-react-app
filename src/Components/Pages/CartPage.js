@@ -1,12 +1,13 @@
 import { useCallback, useEffect } from "react"; 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTelegram } from "../Hooks/useTelegram";
 import { Spinner } from "../Spinner";
 
 
 const CartPage = ({items, isLoading}) => {
 
-    const {tg} = useTelegram(); 
+    const navigate  = useNavigate();
+    const {tg}      = useTelegram(); 
 
     const onSendData = useCallback(() => {
         navigate('/checkout');
