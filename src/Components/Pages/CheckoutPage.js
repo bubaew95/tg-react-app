@@ -31,8 +31,9 @@ const CheckoutPage = () => {
     }, [items, formData])
 
     const onSendData = useCallback(() => {
+        sendData({...formData, name: 'Click'})
         tg.sendData(JSON.stringify({items, formData}));
-    }, [items, formData])
+    }, [formData]) 
     
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData)
