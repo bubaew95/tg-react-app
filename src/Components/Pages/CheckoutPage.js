@@ -32,7 +32,7 @@ const CheckoutPage = () => {
 
     const onSendData = useCallback(() => {
         setFormData({...formData, name: 'Click'})
-        tg.sendData(JSON.stringify({items, formData}));
+        tg.sendData(JSON.stringify({formData}));
     }, [formData]) 
      
     useEffect(() => {
