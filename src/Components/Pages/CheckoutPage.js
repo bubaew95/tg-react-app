@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useState } from "react"; 
+import { useSelector } from "react-redux";
 import { useTelegram } from "../Hooks/useTelegram";
 import { Input } from "../UI/Input";
 import { Textarea } from "../UI/Textarea";
 
 
-const CheckoutPage = ({cart}) => {
-
+const CheckoutPage = () => {
     const {tg} = useTelegram();
+    const {items, totalSum, quantity, isLoading} = useSelector((state) => state.cart);
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -17,7 +18,7 @@ const CheckoutPage = ({cart}) => {
 
     useEffect(() => {
         const {name, phone, email} = formData;
-        console.log({name, phone, email})
+        
         if(name.length !== 0 && (phone.length > 7 || email.length > 3)) {
             tg.MainButton.show();
         } else {
@@ -27,11 +28,11 @@ const CheckoutPage = ({cart}) => {
         return () => {
             tg.MainButton.show();
         }
-    }, [formData])
+    }, [items, formData])
 
     const onSendData = useCallback(() => {
-        tg.sendData(JSON.stringify({cart, formData}));
-    }, [cart, formData])
+        tg.sendData(JSON.stringify({items, formData}));
+    }, [items, formData])
     
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData)

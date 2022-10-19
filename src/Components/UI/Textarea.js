@@ -8,8 +8,8 @@ export const Textarea = ({placeholder = '', onChange = null, value = null}) => {
                 placeholder={placeholder} 
                 rows="3"
                 onChange={onChange}
-            >
-                {value}
+                defaultValue={value}
+            > 
             </textarea>
         </div>
     )
