@@ -18,16 +18,16 @@ const CheckoutPage = () => {
 
     useEffect(() => {
         const {name, phone, email} = formData;
-        
+
         if(name.length !== 0 && (phone.length > 7 || email.length > 3)) {
             tg.MainButton.show();
         } else {
             tg.MainButton.hide();
         }
         
-        return () => {
-            tg.MainButton.show();
-        }
+        // return () => {
+        //     tg.MainButton.show();
+        // }
     }, [items, formData])
 
     const onSendData = useCallback(() => {
@@ -43,6 +43,7 @@ const CheckoutPage = () => {
 
     return (
         <div className="row g-3">
+            {JSON.stringify(items)}
             <form>
                 <Input 
                     type="text" 
