@@ -1,4 +1,4 @@
-export const telegramButton = (tg, text, stateButton) => {
+export const telegramButton = (text, tg, stateButton) => {
     if(stateButton) {
         tg.MainButton.hide();
     } else {

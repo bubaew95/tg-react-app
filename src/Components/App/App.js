@@ -30,18 +30,6 @@ const App = () => {
     dispatch(cartRoute(storedValue));
   }, [tg])
 
-  useEffect(() => {
-    telegramButton(tg, `В корзине (${quantity}) ${totalSum}₽`, items.length === 0);
-    // if(items.length === 0) {
-    //   tg.MainButton.hide();
-    // } else {
-    //     tg.MainButton.show(); 
-    //     tg.MainButton.setParams({
-    //         text: `В корзине (${quantity}) ${totalSum}₽` 
-    //     })
-    // }
-  }, [items])
-
   return ( 
     <div className="App">
         <div className='container'> 

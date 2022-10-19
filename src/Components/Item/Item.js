@@ -1,7 +1,22 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { cartAddRoute } from "../../Redux/Reducers/CartReducer";
  
 
-const Item = ({item, addToCart}) => {
+const Item = ({item}) => {
+    const dispatch      = useDispatch(); 
+    const {totalSum = 0, quantity = 1}  = useSelector((state) => state.cart);
+
+    const addToCart = (item) => { 
+        console.log({totalSum, quantity})
+        dispatch(cartAddRoute({
+            totalSum: parseFloat(totalSum) + parseFloat(item.price),
+            quantity: quantity + 1,
+            item, 
+            userId: storedValue
+        }));
+    }
+
     return (
         <div className='col col-md-6 col-6'>
             <div className="card mb-4">
