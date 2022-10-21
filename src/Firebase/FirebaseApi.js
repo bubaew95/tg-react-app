@@ -48,12 +48,16 @@ export const FirebaseApi = {
   cart: async (params = {}) => { 
     const lists = [];
     const cart = await getDoc(doc(firestore, CART_TABLE, params));
+    const cartData = cart.data();
+    if(cartData.status === 'checkout') {
+      return {items: []};
+    }
+
     const cartItems = await getDocs(collection(firestore, `cart/${params}/items`));
     cartItems.forEach(item => { 
       lists.push(item.data())
     })
 
-    const cartData = cart.data();
     const nCartData = {
       quantity: !isNaN(cartData.quantity) ? cartData.quantity : 0,
       totalSum: !isNaN(cartData.totalSum) ? cartData.totalSum : 0, 

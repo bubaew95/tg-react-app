@@ -36,6 +36,12 @@ const CartPage = ({items, isLoading}) => {
         return <Spinner />
     }
 
+    if(items.length === 0) {
+        return (
+            <div>Cart is empty</div>
+        )
+    }
+
     return (
         <div className="cart-page">
             {
